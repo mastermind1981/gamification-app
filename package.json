@@ -1,0 +1,28 @@
+{
+  "name": "gamification-app",
+  "version": "0.0.1",
+  "description": "Plataforma de gamification para empresas",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ldesanto/gamification-app.git"
+  },
+  "keywords": [
+    "gamification"
+  ],
+  "author": "Gamification Labs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldesanto/gamification-app/issues"
+  },
+  "homepage": "https://github.com/ldesanto/gamification-app",
+  "devDependencies": {
+    "glob": "^5.0.5",
+    "gulp": "^3.8.11",
+    "gulp-requirejs": "^0.1.3",
+    "gulp-uglify": "^1.2.0"
+  }
+}
