@@ -1,5 +1,6 @@
-Plataforma de gamification para empresas
+Gamification
 ===============================
+Plataforma de gamification para empresas
 
 Detalhes técnicos
 ------------------
