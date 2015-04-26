@@ -4,11 +4,8 @@
 
 define([
 	"libs/core",
-	"helpers/menu",
-	"helpers/locale",
-	"helpers/theme",
 	"libs/rollbar"
-], function(core, menu, locale, theme, tracker){
+], function(core, tracker){
 
 
 	//webix.codebase = "libs/webix/";
@@ -32,16 +29,12 @@ define([
 
 	//configuration
 	var app = core.create({
-		id:			"admin-demo",
-		name:		"Webix Admin",
+		id:			"gamification-app",
+		name:		"Gamification",
 		version:	"0.1",
 		debug:		true,
 		start:		"/app/dashboard"		
 	});
-
-	app.use(menu);
-	app.use(locale);
-	app.use(theme);
 
 	return app;
 });

@@ -3,6 +3,7 @@ var glob = require('glob');
 
 var rjs = require('gulp-requirejs');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('js', function(){
 	var views = glob.sync('views/**/*.js').map(function(value){
@@ -12,9 +13,12 @@ gulp.task('js', function(){
 	rjs({
 		baseUrl: './',
 		out: 'app.js',
-		paths: { text: 'libs/text' },
-		include: ['libs/almond.js'].concat(views)
+		insertRequire:["app"],
+		deps:["app"],
+		include: ["libs/almond.js"].concat(views)
 	})
-	//.pipe(uglify())
-	.pipe(gulp.dest('./'));
+	.pipe(sourcemaps.init())
+	.pipe(uglify())
+	.pipe(sourcemaps.write("./"))
+	.pipe(gulp.dest('./deploy/'));
 });
