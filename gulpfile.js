@@ -15,6 +15,6 @@ gulp.task('js', function(){
 		paths: { text: 'libs/text' },
 		include: ['libs/almond.js'].concat(views)
 	})
-	.pipe(uglify())
+	//.pipe(uglify())
 	.pipe(gulp.dest('./'));
 });

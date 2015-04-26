@@ -3,20 +3,13 @@ define(function(){
 	//Top toolbar
 	var mainToolbar = {
 		view: "toolbar",
-
-		elements:[
-			{view: "label", label: "Gamification", width: 200}
-		]
-	};
-
-	var layout = {
-		rows:[
-			mainToolbar
-		]
+		elements:[{view: "label", label: "Gamification", width: 200}]
 	};
 
 	return {
-		$ui:layout
+		$ui:{
+			rows:[mainToolbar]
+		}
 	};
 	
 });

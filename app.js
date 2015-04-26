@@ -1,1 +1,47 @@
-var requirejs,require,define;!function(e){function n(e,n){return v.call(e,n)}function i(e,n){var i,r,t,o,f,u,l,c,s,p,a,d=n&&n.split("/"),g=m.map,h=g&&g["*"]||{};if(e&&"."===e.charAt(0))if(n){for(d=d.slice(0,d.length-1),e=e.split("/"),f=e.length-1,m.nodeIdCompat&&j.test(e[f])&&(e[f]=e[f].replace(j,"")),e=d.concat(e),s=0;s<e.length;s+=1)if(a=e[s],"."===a)e.splice(s,1),s-=1;else if(".."===a){if(1===s&&(".."===e[2]||".."===e[0]))break;s>0&&(e.splice(s-1,2),s-=2)}e=e.join("/")}else 0===e.indexOf("./")&&(e=e.substring(2));if((d||h)&&g){for(i=e.split("/"),s=i.length;s>0;s-=1){if(r=i.slice(0,s).join("/"),d)for(p=d.length;p>0;p-=1)if(t=g[d.slice(0,p).join("/")],t&&(t=t[r])){o=t,u=s;break}if(o)break;!l&&h&&h[r]&&(l=h[r],c=s)}!o&&l&&(o=l,u=c),o&&(i.splice(0,u,o),e=i.join("/"))}return e}function r(n,i){return function(){return s.apply(e,b.call(arguments,0).concat([n,i]))}}function t(e){return function(n){return i(n,e)}}function o(e){return function(n){d[e]=n}}function f(i){if(n(g,i)){var r=g[i];delete g[i],h[i]=!0,c.apply(e,r)}if(!n(d,i)&&!n(h,i))throw new Error("No "+i);return d[i]}function u(e){var n,i=e?e.indexOf("!"):-1;return i>-1&&(n=e.substring(0,i),e=e.substring(i+1,e.length)),[n,e]}function l(e){return function(){return m&&m.config&&m.config[e]||{}}}var c,s,p,a,d={},g={},m={},h={},v=Object.prototype.hasOwnProperty,b=[].slice,j=/\.js$/;p=function(e,n){var r,o=u(e),l=o[0];return e=o[1],l&&(l=i(l,n),r=f(l)),l?e=r&&r.normalize?r.normalize(e,t(n)):i(e,n):(e=i(e,n),o=u(e),l=o[0],e=o[1],l&&(r=f(l))),{f:l?l+"!"+e:e,n:e,pr:l,p:r}},a={require:function(e){return r(e)},exports:function(e){var n=d[e];return"undefined"!=typeof n?n:d[e]={}},module:function(e){return{id:e,uri:"",exports:d[e],config:l(e)}}},c=function(i,t,u,l){var c,s,m,v,b,j,w=[],x=typeof u;if(l=l||i,"undefined"===x||"function"===x){for(t=!t.length&&u.length?["require","exports","module"]:t,b=0;b<t.length;b+=1)if(v=p(t[b],l),s=v.f,"require"===s)w[b]=a.require(i);else if("exports"===s)w[b]=a.exports(i),j=!0;else if("module"===s)c=w[b]=a.module(i);else if(n(d,s)||n(g,s)||n(h,s))w[b]=f(s);else{if(!v.p)throw new Error(i+" missing "+s);v.p.load(v.n,r(l,!0),o(s),{}),w[b]=d[s]}m=u?u.apply(d[i],w):void 0,i&&(c&&c.exports!==e&&c.exports!==d[i]?d[i]=c.exports:m===e&&j||(d[i]=m))}else i&&(d[i]=u)},requirejs=require=s=function(n,i,r,t,o){if("string"==typeof n)return a[n]?a[n](i):f(p(n,i).f);if(!n.splice){if(m=n,m.deps&&s(m.deps,m.callback),!i)return;i.splice?(n=i,i=r,r=null):n=e}return i=i||function(){},"function"==typeof r&&(r=t,t=o),t?c(e,n,i,r):setTimeout(function(){c(e,n,i,r)},4),s},s.config=function(e){return s(e)},requirejs._defined=d,define=function(e,i,r){i.splice||(r=i,i=[]),n(d,e)||n(g,e)||(g[e]=[e,i,r])},define.amd={jQuery:!0}}(),define("libs/almond.js",function(){}),define("views/app",[],function(){var e={view:"toolbar",elements:[{view:"label",label:"Gamification",width:200}]},n={rows:[e]};return{$ui:n}});
+/*
+	App configuration
+*/
+
+define([
+	"libs/core",
+	"helpers/menu",
+	"helpers/locale",
+	"helpers/theme",
+	"libs/rollbar"
+], function(core, menu, locale, theme, tracker){
+
+
+	//webix.codebase = "libs/webix/";
+	//CKEditor requires full path
+	webix.codebase = document.location.href.split("#")[0].replace("index.html","")+"libs/webix/";
+
+	if(!webix.env.touch && webix.ui.scrollSize && webix.CustomScroll)
+		webix.CustomScroll.init();
+
+
+	if (webix.production)
+		tracker.init({
+			accessToken: '650b007d5d794bb68d056584451a57a8',
+			captureUncaught: true,
+			source_map_enabled: true,
+			code_version:"0.8.0",
+			payload: {
+				environment: 'production'
+			}
+		});
+
+	//configuration
+	var app = core.create({
+		id:			"admin-demo",
+		name:		"Webix Admin",
+		version:	"0.1",
+		debug:		true,
+		start:		"/app/dashboard"		
+	});
+
+	app.use(menu);
+	app.use(locale);
+	app.use(theme);
+
+	return app;
+});
