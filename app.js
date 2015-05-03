@@ -3,14 +3,15 @@
 */
 
 define([
-	"libs/core",
-	"libs/rollbar"
-], function(core, tracker){
+	'libs/core',
+	'helpers/menu',
+	'libs/rollbar'
+], function(core, menu, tracker){
 
 
 	//webix.codebase = "libs/webix/";
 	//CKEditor requires full path
-	webix.codebase = document.location.href.split("#")[0].replace("index.html","")+"libs/webix/";
+	webix.codebase = document.location.href.split('#')[0].replace('index.html','')+'libs/webix/';
 
 	if(!webix.env.touch && webix.ui.scrollSize && webix.CustomScroll)
 		webix.CustomScroll.init();
@@ -21,7 +22,7 @@ define([
 			accessToken: '650b007d5d794bb68d056584451a57a8',
 			captureUncaught: true,
 			source_map_enabled: true,
-			code_version:"0.8.0",
+			code_version:'0.8.0',
 			payload: {
 				environment: 'production'
 			}
@@ -29,12 +30,14 @@ define([
 
 	//configuration
 	var app = core.create({
-		id:			"gamification-app",
-		name:		"Gamification",
-		version:	"0.1",
+		id:			'gamification-app',
+		name:		'Gamification',
+		version:	'0.1',
 		debug:		true,
-		start:		"/app/dashboard"		
+		start:		'/app/geral'
 	});
+
+	app.use(menu);
 
 	return app;
 });
