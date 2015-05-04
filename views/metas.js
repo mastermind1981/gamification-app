@@ -4,57 +4,35 @@ define([
 ], function(metaform, metas){
 
 	var controls = [
-		{ view: 'button', type: 'iconButton', icon: 'plus', label: 'Adicionar meta', width: 140, click: function(){
+		{ view: 'button', type: 'iconButton', icon: 'plus', label: 'Adicionar meta', width: 150, click: function(){
 			this.$scope.ui(metaform.$ui).show();
 		}},
 		{},
-		{},
-		/*{view:"richselect", id:"order_filter", value: "all", maxWidth: 400, minWidth: 250, vertical: true, labelWidth: 100, options:[
-			{id:"all", value:"All"},
-			{id:"new", value:"Need Invoicing"},
-			{id:"ready", value:"Ready to Ship"},
-			{id:"completed", value:"Completed"},
-			{id:"cancelled", value:"Cancelled"}
-		],  label:"Filter orders", on:{
-			onChange:function(){
-				var val = this.getValue();
-				if(val=="all")
-					$$("orderData").filter("#status#","");
-				else
-					$$("orderData").filter("#status#",val);
-			}
-		}
-		}*/
+		{}
 	];
 
 	var grid = {
 		margin:10,
 		rows:[
 			{
-				id:"orderData",
+				id:"metaData",
 				view:"datatable", select:true,
 				columns:[
 					{id:"meta", header:"Meta", sort:"string", minWidth:150},
 					{id:"meta_projetada", header:"Meta Projetada", sort:"string", minWidth:150},
-					{id:"meta_realizada", header:"Meta Realizada", sort:"string", width:150},
-					{id:"total_concluido", header:"%", width:90, sort:"string", format:webix.i18n.priceFormat},
-					{id:"Status", header:"Status", width:90, sort:"string", format:webix.i18n.priceFormat}
+					{id:"meta_realizada", header:"Meta Realizada", sort:"string", minWidth:150},
+					{id:"total_concluido", header:"%", width:90, sort:"string"},
+					{id:"Status", header:"Status", width:90, sort:"string"}
 				],
-				export: true,
-				on: {
-					onAfterLoad: function(){
-						this.select(4);
-					}
-				},
 				pager:"pagerA",
 				//data: metas.getAll,
 				onClick:{
 					webix_icon:function(e,id,node){
 						webix.confirm({
-							text:"The order will be deleted.<br/> Are you sure?", ok:"Yes", cancel:"Cancel",
+							text:"A meta será excluída.<br/> Você tem certeza?", ok:"Excluir", cancel:"Cancelar",
 							callback:function(res){
 								if(res){
-									webix.$$("orderData").remove(id);
+									webix.$$("metaData").remove(id);
 								}
 							}
 						});
