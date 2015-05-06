@@ -4,36 +4,22 @@ define(function(){
 		$ui:{
 			view: 'window',
 			modal: true,
-			id: 'recompensa-window',
+			id: 'meta-window',
 			position: 'center',
-			head: 'Adicionar recompensa',
+			head: 'Adicionar meta',
 			body:{
 				paddingY: 20,
 				paddingX: 30,
 				width: 450,
 				elementsConfig:{
-					labelWidth: 130,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				view: 'form',
-				id: 'recompensa-form',
+				id: 'meta-form',
 				elements:[{
 					view: 'text',
 					label: 'Descrição'
-				},{ 
-					view: 'richselect',
-					label: 'Nível mínimo',
-					name: 'nivelID',
-					options:{
-						data:[
-							{ id: 1, value:'Nível 1' },
-							{ id: 2, value:'Nível 2' }, 
-							{ id: 3, value:'Nível 3' }
-						]
-					}
-				},{
-					view: 'counter',
-					label: 'Pontos necessários'
 				},{
 					margin: 10,
 					cols:[{},{
@@ -43,7 +29,7 @@ define(function(){
 						align: 'center',
 						width: 120,
 						click: function(){
-							webix.$$('recompensa-window').close();
+							webix.$$('meta-window').close();
 						}
 					},{
 						view: 'button',
@@ -51,7 +37,7 @@ define(function(){
 						align: 'center',
 						width: 120,
 						click: function(){
-							webix.$$('recompensa-window').close();
+							webix.$$('meta-window').close();
 						}
 					},{}]
 				}]

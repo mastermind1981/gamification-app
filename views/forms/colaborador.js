@@ -10,52 +10,19 @@ define(function(){
 			body:{
 				paddingY: 20,
 				paddingX: 30,
-				width: 500,
-				elementsConfig:{
-					labelWidth: 120,
-					labelAlign: 'right'
-				},
+				elementsConfig:{labelWidth: 140},
 				view: 'form',
 				id: 'meta-form',
 				elements:[{
-					view: 'text',
-					label: 'Título'
-				},{
-					view: 'textarea',
-					label: 'Descrição'
-				},{
 					view: 'datepicker',
 					label: 'Data de Início',
 					value: new Date(),
-					format: '%d  %M %Y',
-					width: 300
+					format: '%d  %M %Y'
 				},{
 					view: 'datepicker',
 					label: 'Data de Término',
 					value: new Date(),
-					format: '%d  %M %Y',
-					width: 300
-				},{
-					view: 'text',
-					label: 'Meta projetada',
-					width: 300
-				},{
-					view: 'text',
-					label: 'Meta realizada',
-					width: 300
-				},{ 
-					view: 'richselect',
-					width: 300,
-					label: 'Status',
-					name: 'statusID',
-					options:{
-						data:[
-							{ id: 1, value:'Não Iniciada' },
-							{ id: 2, value:'Em Andamento' }, 
-							{ id: 3, value:'Cancelada' },
-							{ id: 4, value:'Concluída' }
-						]
-					}
+					format: '%d  %M %Y'
 				},{
 					margin: 10,
 					cols:[{},{
@@ -75,7 +42,7 @@ define(function(){
 						click: function(){
 							webix.$$('meta-window').close();
 						}
-					},{}]
+					}]
 				}]
 			}
 		}

@@ -4,7 +4,7 @@ define([
 ], function(recompensaform, recompensas){
 
 	var controls = [
-		{ view: 'button', type: 'iconButton', icon: 'plus', label: 'Adicionar recompensa', width: 150, click: function(){
+		{ view: 'button', type: 'iconButton', icon: 'plus', label: 'Adicionar recompensa', width: 190, click: function(){
 			this.$scope.ui(recompensaform.$ui).show();
 		}},
 		{},
@@ -16,20 +16,19 @@ define([
 		rows:[
 			{
 				id:"recompensaData",
-				view:"datatable", select:true,
+				view:"datatable",
+				select: true,
 				columns:[
-					{id:"meta", header:"Meta", sort:"string", minWidth:150},
-					{id:"meta_projetada", header:"Meta Projetada", sort:"string", minWidth:150},
-					{id:"meta_realizada", header:"Meta Realizada", sort:"string", minWidth:150},
-					{id:"total_concluido", header:"%", width:90, sort:"string"},
-					{id:"Status", header:"Status", width:90, sort:"string"}
+					{id:"recompensa", header:"Recompensa", sort:"string", minWidth:150},
+					{id:"pontos", header:"Pontos necessários", sort:"string", minWidth:150},
+					{id:"nivel_minimo", header:"Nível mínimo", sort:"string", minWidth:150}
 				],
 				pager:"pagerA",
 				//data: recompensas.getAll,
 				onClick:{
 					webix_icon:function(e,id,node){
 						webix.confirm({
-							text:"A meta será excluída.<br/> Você tem certeza?", ok:"Excluir", cancel:"Cancelar",
+							text:"A recompensa será excluída.<br/> Você tem certeza?", ok:"Excluir", cancel:"Cancelar",
 							callback:function(res){
 								if(res){
 									webix.$$("recompensaData").remove(id);
@@ -71,9 +70,6 @@ define([
 					}
 				]
 			}
-
-
-
 		]
 
 	};
